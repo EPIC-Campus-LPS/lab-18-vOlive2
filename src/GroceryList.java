@@ -8,14 +8,14 @@ import java.io.IOException;
 
 public class GroceryList {
     public static void main(String[] args) {
-        String url = "http://example.com"; // Replace with your target URL
+        String url = "https://www.wholefoodsmarket.com/grocery/search?k=chicken"; // Replace with your target URL
         try {
             Document doc = Jsoup.connect(url).get();
-            Elements links = doc.select("a[href]"); // Select all anchor tags with href attribute
+            Elements classes = doc.select("span"); // Select all anchor tags with href attribute
 
-            for (Element link : links) {
-                System.out.println("Link Text: " + link.text());
-                System.out.println("Link URL: " + link.attr("abs:href")); // Get absolute URL
+            for (Element c : classes) {
+                System.out.println("Class Text: " + c.text());
+                System.out.println("Class Attribute: " + c.attr("class=\"bds--heading-5 text-left\"")); // Get absolute URL
             }
 
         } catch (IOException e) {
