@@ -1,7 +1,29 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import java.io.IOException;
 
 public class GroceryList {
+    public static void main(String[] args) {
+        String url = "http://example.com"; // Replace with your target URL
+        try {
+            Document doc = Jsoup.connect(url).get();
+            Elements links = doc.select("a[href]"); // Select all anchor tags with href attribute
+
+            for (Element link : links) {
+                System.out.println("Link Text: " + link.text());
+                System.out.println("Link URL: " + link.attr("abs:href")); // Get absolute URL
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+/* public class GroceryList {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		ArrayList<String> items = new ArrayList<>();
@@ -36,5 +58,3 @@ public class GroceryList {
 			System.out.print(words.get(i) + " ");
 		}
 		*/
-	}
-}
